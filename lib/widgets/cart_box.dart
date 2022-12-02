@@ -4,7 +4,9 @@ class CartBox extends StatelessWidget {
   final String name;
   final String price;
   final String image;
+  final String count;
   final Color color;
+  final bool show;
   final VoidCallback? onTap;
   const CartBox({
     Key? key,
@@ -12,7 +14,9 @@ class CartBox extends StatelessWidget {
     required this.price,
     required this.image,
     required this.color,
+    required this.count,
     this.onTap,
+    this.show = false,
   }) : super(key: key);
 
   @override
@@ -61,11 +65,10 @@ class CartBox extends StatelessWidget {
               ],
             ),
           ),
-          const Expanded(
-            child: SizedBox.shrink(),
-          ),
-          Padding(
+          const Expanded(child: SizedBox.shrink()),
+          Container(
             padding: const EdgeInsets.all(15.0),
+            width: 90,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -78,7 +81,7 @@ class CartBox extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  '1 item',
+                  '$count item',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.grey.shade500,
@@ -88,6 +91,16 @@ class CartBox extends StatelessWidget {
               ],
             ),
           ),
+          show
+              ? IconButton(
+                  onPressed: onTap,
+                  icon: const Icon(
+                    Icons.delete,
+                    size: 30,
+                    color: Colors.black54,
+                  ),
+                )
+              : const SizedBox.shrink(),
         ],
       ),
     );

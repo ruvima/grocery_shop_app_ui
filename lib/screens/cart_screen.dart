@@ -8,7 +8,7 @@ class CartScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cartItems = ref.watch(cartProvider).items;
+    final cartItems = ref.watch(cartProvider);
     final cart = ref.watch(cartProvider.notifier);
 
     return SafeArea(
@@ -32,15 +32,19 @@ class CartScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: cartItems.length,
+                    itemCount: cartItems.cartList.length,
                     itemBuilder: (context, index) {
-                      final item = cartItems[index];
+                      final item = cartItems.cartList[index];
                       return CartBox(
                         name: item.name,
                         price: item.price.toString(),
                         image: item.image,
                         color: item.color,
-                        onTap: () {},
+                        count: item.count.toString(),
+                        show: true,
+                        onTap: () {
+                          ref.read(cartProvider).removeItem(index);
+                        },
                       );
                     }),
               ),
@@ -70,8 +74,14 @@ class CartScreen extends ConsumerWidget {
                           ),
                           Text(
                             '\$ ${cart.total}',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '${cartItems.cartList.length} products',
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),

@@ -16,7 +16,7 @@ class ItemsListState {
       items: [
         Item(
           name: 'Apple',
-          price: 6.0,
+          price: 6.00,
           image: Constants.apple,
           color: Colors.red.shade50,
         ),
@@ -28,13 +28,13 @@ class ItemsListState {
         ),
         Item(
           name: 'Orange',
-          price: 9.0,
+          price: 9.00,
           image: Constants.orange,
           color: Colors.orange.shade50,
         ),
         Item(
           name: 'Strawberry',
-          price: 5.0,
+          price: 5.00,
           image: Constants.strawberry,
           color: Colors.red.shade100,
         ),

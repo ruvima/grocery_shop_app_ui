@@ -12,7 +12,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final items = ref.watch(itemsProvider).items;
-    final cartItems = ref.watch(cartProvider).items;
+    final cartItems = ref.watch(cartProvider);
 
     return SafeArea(
       child: Scaffold(
@@ -77,21 +77,28 @@ class HomeScreen extends ConsumerWidget {
                         price: '\$ ${item.price}',
                         image: item.image,
                         color: item.color,
-                        onTap: () =>
-                            ref.read(cartProvider.notifier).addItem(item),
+                        onTap: () => ref.read(cartProvider).addItem(item),
                       );
                     }),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'My orders',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  cartItems.cartList.isEmpty
+                      ? const Text(
+                          'My orders',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      : Text(
+                          'My orders : ${cartItems.cartList.length} products',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                   TextButton(
                     onPressed: () => Navigator.pushNamed(context, '/cart'),
                     child: const Text(
@@ -108,13 +115,14 @@ class HomeScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: cartItems.length,
+                    itemCount: cartItems.cartList.length,
                     itemBuilder: (context, index) {
-                      final item = cartItems[index];
+                      final item = cartItems.cartList[index];
                       return CartBox(
                         name: item.name,
                         price: item.price.toString(),
                         image: item.image,
+                        count: item.count.toString(),
                         color: item.color,
                         onTap: () {},
                       );
