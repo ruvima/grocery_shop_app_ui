@@ -10,7 +10,7 @@ class CartListNotifier extends ChangeNotifier {
   double _total = 0;
   double get total => _total;
 
-  List _cartList = [];
+  List<Item> _cartList = [];
   List get cartList => _cartList;
 
   void addItem(Item item) {
@@ -18,7 +18,7 @@ class CartListNotifier extends ChangeNotifier {
 
     double sum = 0;
 
-    for (var i = 0; i < _cartList.length; i++) {
+    for (int i = 0; i < _cartList.length; i++) {
       sum += _cartList[i].price;
     }
     _total = sum;
@@ -26,7 +26,9 @@ class CartListNotifier extends ChangeNotifier {
   }
 
   void removeItem(int index) {
+    _total -= _cartList[index].price;
     _cartList.removeAt(index);
+
     notifyListeners();
   }
 }
