@@ -45,7 +45,8 @@ class FruitsBox extends StatelessWidget {
             ElevatedButton(
               onPressed: onTap,
               style: ElevatedButton.styleFrom(
-                elevation: 0,
+                foregroundColor: Colors.grey,
+                elevation: 1,
                 backgroundColor: Colors.white,
                 minimumSize: const Size(double.infinity, 40),
                 shape: RoundedRectangleBorder(

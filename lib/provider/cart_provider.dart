@@ -1,99 +1,91 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:grocery_shop_app_ui/models/item.dart';
 
-final cartProvider =
-    ChangeNotifierProvider<CartListNotifier>((_) => CartListNotifier());
+class CartListState {
+  final List<Item> items;
 
-class CartListNotifier extends ChangeNotifier {
-  double _total = 0;
-  double get total => _total;
-
-  List<Item> _cartList = [];
-  List get cartList => _cartList;
-
-  void addItem(Item item) {
-    _cartList = [..._cartList, item];
-
-    double sum = 0;
-
-    for (int i = 0; i < _cartList.length; i++) {
-      sum += _cartList[i].price;
-    }
-    _total = sum;
-    notifyListeners();
+  CartListState({
+    required this.items,
+  });
+  CartListState copyWith({
+    List<Item>? items,
+  }) {
+    return CartListState(
+      items: items ?? this.items,
+    );
   }
 
-  void removeItem(int index) {
-    _total -= _cartList[index].price;
-    _cartList.removeAt(index);
-
-    notifyListeners();
+  factory CartListState.initial() {
+    return CartListState(
+      items: [],
+    );
   }
+
+  @override
+  String toString() => 'CartListState(items: $items)';
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is CartListState && listEquals(other.items, items);
+  }
+
+  @override
+  int get hashCode => items.hashCode;
 }
 
-// class CartListState {
-//   final List<Item> items;
+final cartProvider =
+    StateNotifierProvider<CartListNotifier, CartListState>((_) {
+  return CartListNotifier();
+});
 
-//   CartListState({
-//     required this.items,
-//   });
-//   CartListState copyWith({
-//     List<Item>? items,
-//   }) {
-//     return CartListState(
-//       items: items ?? this.items,
-//     );
-//   }
+class CartListNotifier extends StateNotifier<CartListState> {
+  CartListNotifier() : super(CartListState.initial());
 
-//   factory CartListState.initial() {
-//     return CartListState(
-//       items: [],
-//     );
-//   }
+  double _total = 0;
+  int _cartLengt = 0;
 
-//   @override
-//   String toString() => 'CartListState(items: $items)';
-//   @override
-//   bool operator ==(Object other) {
-//     if (identical(this, other)) return true;
+  double get total => _total;
+  int get cartLengt => _cartLengt;
 
-//     return other is CartListState && listEquals(other.items, items);
-//   }
+  void addItem(Item item) {
+    final product = state.items;
+    double totalPrice = _total;
 
-//   @override
-//   int get hashCode => items.hashCode;
-// }
+    if (product.contains(item)) {
+      final index = product.indexOf(item);
+      product[index].count++;
 
-// final cartProvider = StateNotifierProvider((_) {
-//   return CartListNotifier();
-// });
+      state = state.copyWith(items: product);
+    } else {
+      final newItems = [
+        ...state.items,
+        item.copyWith(count: 1),
+      ];
+      state = state.copyWith(items: newItems);
+    }
 
-// class CartListNotifier extends StateNotifier {
-//   CartListNotifier() : super();
+    // //
 
-//   double _total = 0;
+    _cartLengt++;
+    _total = totalPrice + item.price;
+  }
 
-//   double get total => _total;
+  void removeItem(Item item) {
+    final product = state.items;
+    double totalPrice = _total;
+    if (item.count > 1) {
+      final index = product.indexOf(item);
 
-//   void addItem(Item item) {
-//     final newItems = [...state.items, item];
+      product[index].count--;
+      state = state.copyWith(items: product);
+    } else {
+      product.remove(item);
+      state = state.copyWith(items: product);
+    }
 
-//     state = state.copyWith(items: newItems);
-//     //
-//     double sum = 0;
-
-//     for (var i = 0; i < state.items.length; i++) {
-//       sum += state.items[i].price;
-//     }
-//     _total = sum;
-//   }
-
-//   void removeItem(int index) {
-//     final newList = [state.items.removeAt(index)];
-
-//     state.copyWith(
-//         items: state.items.where((i) => i != state.items[index]).toList());
-//   }
-// }
+    _cartLengt--;
+    _total = totalPrice - item.price;
+  }
+}

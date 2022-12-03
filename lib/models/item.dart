@@ -5,14 +5,14 @@ class Item {
   final double price;
   final String image;
   final Color color;
-  final int count;
+  int count;
 
   Item({
     required this.name,
     required this.price,
     required this.image,
     required this.color,
-    this.count = 1,
+    this.count = 0,
   });
   Item copyWith({
     String? name,
@@ -43,16 +43,11 @@ class Item {
         other.name == name &&
         other.price == price &&
         other.image == image &&
-        other.color == color &&
-        other.count == count;
+        other.color == color;
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^
-        price.hashCode ^
-        image.hashCode ^
-        color.hashCode ^
-        count.hashCode;
+    return name.hashCode ^ price.hashCode ^ image.hashCode ^ color.hashCode;
   }
 }

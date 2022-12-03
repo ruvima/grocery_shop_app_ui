@@ -12,7 +12,8 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final items = ref.watch(itemsProvider).items;
-    final cartItems = ref.watch(cartProvider);
+    final cartItems = ref.watch(cartProvider).items;
+    final cartTools = ref.watch(cartProvider.notifier);
 
     return SafeArea(
       child: Scaffold(
@@ -34,8 +35,9 @@ class HomeScreen extends ConsumerWidget {
                     child: SizedBox.shrink(),
                   ),
                   CircleAvatar(
+                    backgroundColor: Colors.white,
                     radius: 22,
-                    backgroundImage: NetworkImage(Constants.avatar),
+                    backgroundImage: AssetImage(Constants.profile),
                   ),
                 ],
               ),
@@ -77,14 +79,15 @@ class HomeScreen extends ConsumerWidget {
                         price: '\$ ${item.price}',
                         image: item.image,
                         color: item.color,
-                        onTap: () => ref.read(cartProvider).addItem(item),
+                        onTap: () =>
+                            ref.read(cartProvider.notifier).addItem(item),
                       );
                     }),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  cartItems.cartList.isEmpty
+                  cartItems.isEmpty
                       ? const Text(
                           'My orders',
                           style: TextStyle(
@@ -93,7 +96,7 @@ class HomeScreen extends ConsumerWidget {
                           ),
                         )
                       : Text(
-                          'My orders : ${cartItems.cartList.length} products',
+                          'My orders : ${cartTools.cartLengt} products',
                           style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -115,9 +118,9 @@ class HomeScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: cartItems.cartList.length,
+                    itemCount: cartItems.length,
                     itemBuilder: (context, index) {
-                      final item = cartItems.cartList[index];
+                      final item = cartItems[index];
                       return CartBox(
                         name: item.name,
                         price: item.price.toString(),
