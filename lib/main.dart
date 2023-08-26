@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.indigo,
         ),
-        title: 'Material App',
+        title: 'Grocery Shop',
         initialRoute: '/onboarding',
         routes: AppRoutes.routes,
       ),
