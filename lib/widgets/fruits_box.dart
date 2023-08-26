@@ -4,7 +4,7 @@ class FruitsBox extends StatelessWidget {
   final String name;
   final String price;
   final String image;
-  final Color color;
+
   final VoidCallback? onTap;
 
   const FruitsBox({
@@ -12,7 +12,6 @@ class FruitsBox extends StatelessWidget {
     required this.name,
     required this.price,
     required this.image,
-    required this.color,
     this.onTap,
   }) : super(key: key);
 
@@ -20,7 +19,7 @@ class FruitsBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: color,
+        color: Colors.blueGrey.shade100,
         borderRadius: BorderRadius.circular(15),
       ),
       margin: const EdgeInsetsDirectional.all(5),

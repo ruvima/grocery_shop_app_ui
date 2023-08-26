@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class CartBox extends StatelessWidget {
   final String name;
-  final String price;
+  final String subtotalPrice;
   final String image;
-  final String count;
-  final Color color;
+  final int quantity;
+  // final Color color;
   final bool show;
   final VoidCallback? onTap;
   const CartBox({
     Key? key,
     required this.name,
-    required this.price,
+    required this.subtotalPrice,
     required this.image,
-    required this.color,
-    required this.count,
+    required this.quantity,
+    // required this.color,
     this.onTap,
     this.show = false,
   }) : super(key: key);
@@ -31,7 +31,7 @@ class CartBox extends StatelessWidget {
             height: 60,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: color,
+              color: Colors.grey.shade400,
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -73,7 +73,7 @@ class CartBox extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '\$ $price',
+                  '\$ $subtotalPrice',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -81,7 +81,7 @@ class CartBox extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  '$count item',
+                  '$quantity item',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.grey.shade500,
