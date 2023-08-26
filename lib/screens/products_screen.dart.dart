@@ -22,6 +22,8 @@ class ProductsScreen extends StatelessWidget {
             _LocationHeaderWidget(),
             SizedBox(height: 20),
             _GreetingAndMessageWidget(),
+            SizedBox(height: 20),
+            _ViewCompletelInventoryWidget(),
             SizedBox(height: 10),
             _ProductListWidget(),
             _CartSummaryAndButtonWidget(),
@@ -29,6 +31,42 @@ class ProductsScreen extends StatelessWidget {
             _ShoppingCartListWidget(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _ViewCompletelInventoryWidget extends StatelessWidget {
+  const _ViewCompletelInventoryWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            'Buy fresh items',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pushNamed(
+              context,
+              '/completeInventory',
+            ),
+            child: const Text(
+              'Complete Inventory',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -74,19 +112,21 @@ class _CartSummaryAndButtonWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Builder(builder: (context) {
-            final productQuantity =
-                context.watch<TotalProductBloc>().state.productQuantity;
-            return Text(
-              productQuantity == 0
-                  ? 'My orders'
-                  : 'My orders: $productQuantity products',
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          }),
+          Builder(
+            builder: (context) {
+              final productQuantity =
+                  context.watch<TotalProductBloc>().state.productQuantity;
+              return Text(
+                productQuantity == 0
+                    ? 'My orders'
+                    : 'My orders: $productQuantity products',
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            },
+          ),
           TextButton(
             onPressed: () => Navigator.pushNamed(context, '/cart'),
             child: const Text(
@@ -96,7 +136,7 @@ class _CartSummaryAndButtonWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -162,14 +202,6 @@ class _GreetingAndMessageWidget extends StatelessWidget {
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            'Buy fresh items',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
             ),
           ),
         ],

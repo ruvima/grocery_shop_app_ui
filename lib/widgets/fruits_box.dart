@@ -54,7 +54,7 @@ class FruitsBox extends StatelessWidget {
                 ),
               ),
               child: Text(
-                price,
+                '\$$price',
                 style: const TextStyle(color: Colors.black),
               ),
             ),

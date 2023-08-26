@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/filtered_products/filtered_products_bloc.dart';
+import 'blocs/product_filter/product_filter_bloc.dart';
+import 'blocs/product_search/product_search_bloc.dart';
 import 'blocs/total_product/total_product_bloc.dart';
 import 'router/app_routes.dart';
 import 'blocs/product_cart/product_cart_bloc.dart';
@@ -21,9 +24,22 @@ class MyApp extends StatelessWidget {
         BlocProvider<ProductCartBloc>(
           create: (context) => ProductCartBloc(),
         ),
+        BlocProvider<ProductFilterBloc>(
+          create: (context) => ProductFilterBloc(),
+        ),
+        BlocProvider<ProductSearchBloc>(
+          create: (context) => ProductSearchBloc(),
+        ),
         BlocProvider<TotalProductBloc>(
           create: (context) => TotalProductBloc(
             context.read<ProductCartBloc>(),
+          ),
+        ),
+        BlocProvider<FilteredProductsBloc>(
+          create: (context) => FilteredProductsBloc(
+            productListBloc: context.read<ProductListBloc>(),
+            productSearchBloc: context.read<ProductSearchBloc>(),
+            productFilterBloc: context.read<ProductFilterBloc>(),
           ),
         ),
       ],
@@ -31,9 +47,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.indigo,
+          useMaterial3: true,
         ),
         title: 'Material App',
-        initialRoute: '/onboarding',
+        initialRoute: '/completeInventory',
         routes: AppRoutes.routes,
       ),
     );
