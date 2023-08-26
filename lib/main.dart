@@ -47,10 +47,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.indigo,
-          useMaterial3: true,
         ),
         title: 'Material App',
-        initialRoute: '/completeInventory',
+        initialRoute: '/onboarding',
         routes: AppRoutes.routes,
       ),
     );
