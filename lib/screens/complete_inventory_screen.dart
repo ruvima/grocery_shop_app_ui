@@ -5,6 +5,7 @@ import '../blocs/filtered_products/filtered_products_bloc.dart';
 import '../blocs/product_cart/product_cart_bloc.dart';
 import '../blocs/product_filter/product_filter_bloc.dart';
 import '../blocs/product_search/product_search_bloc.dart';
+import '../blocs/total_product/total_product_bloc.dart';
 import '../widgets/fruits_box.dart';
 
 class CompleteInventoryScreen extends StatelessWidget {
@@ -30,6 +31,9 @@ class CompleteInventoryScreen extends StatelessWidget {
             }
           },
         ),
+        actions: const [
+          _SummaryWidget(),
+        ],
       ),
       body: const SafeArea(
         child: SingleChildScrollView(
@@ -49,6 +53,51 @@ class CompleteInventoryScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _SummaryWidget extends StatelessWidget {
+  const _SummaryWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 15),
+      child: Builder(builder: (context) {
+        final total = context.watch<TotalProductBloc>().state;
+        return Stack(
+          children: [
+            CircleAvatar(
+              radius: 25,
+              backgroundColor: Colors.grey,
+              child: Text(
+                '\$${total.totalAmount}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 4,
+              right: 0,
+              child: CircleAvatar(
+                radius: 10,
+                backgroundColor: Colors.red,
+                child: Text(
+                  '${total.productQuantity}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }
