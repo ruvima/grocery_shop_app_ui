@@ -52,6 +52,9 @@ class _ShoppingCartListWidget extends StatelessWidget {
                   subtotalPrice: item.subtotalPrice.toString(),
                   image: item.product.image,
                   quantity: item.quantity,
+                  color: item.product.category == 'fruits'
+                      ? const Color(0xFFEFFFDD)
+                      : const Color(0XFFFFF0DA),
                   onTap: () {},
                 );
               });
@@ -119,6 +122,9 @@ class _ProductListWidget extends StatelessWidget {
                 name: product.name,
                 price: ' ${product.price}',
                 image: product.image,
+                color: product.category == 'fruits'
+                    ? const Color(0xFFEFFFDD)
+                    : const Color(0XFFFFF0DA),
                 onTap: () {
                   context.read<ProductCartBloc>().add(
                         AddProductCartEvent(product: product),

@@ -5,7 +5,7 @@ class CartBox extends StatelessWidget {
   final String subtotalPrice;
   final String image;
   final int quantity;
-  // final Color color;
+  final Color color;
   final bool show;
   final VoidCallback? onTap;
   const CartBox({
@@ -14,7 +14,7 @@ class CartBox extends StatelessWidget {
     required this.subtotalPrice,
     required this.image,
     required this.quantity,
-    // required this.color,
+    required this.color,
     this.onTap,
     this.show = false,
   }) : super(key: key);
@@ -31,7 +31,7 @@ class CartBox extends StatelessWidget {
             height: 60,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.grey.shade400,
+              color: color,
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),

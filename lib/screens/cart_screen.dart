@@ -134,6 +134,9 @@ class _ShoppingCartListWidget extends StatelessWidget {
                       subtotalPrice: item.subtotalPrice.toString(),
                       image: item.product.image,
                       quantity: item.quantity,
+                      color: item.product.category == 'fruits'
+                          ? const Color(0xFFEFFFDD)
+                          : const Color(0XFFFFF0DA),
                       show: true,
                       onTap: () {
                         context.read<ProductCartBloc>().add(
