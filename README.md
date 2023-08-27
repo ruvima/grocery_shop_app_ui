@@ -19,13 +19,13 @@ Welcome to the Grocery Shop App!.
 - Equatable for streamlined object comparison.
 - Rx Dart for debouncing search input.
 
-<img src="https://i.imgur.com/QE1jnpE.gif" 
+<img src="https://s11.gifyu.com/images/SgQEr.gif" 
      width="405" 
-     height="900" /> <img src="https://i.imgur.com/cLNM6jH.jpg" 
+     height="900" /> <img src="https://i.imgur.com/CsA7MbG.jpg" 
      width="405" 
-     height="900" /> <img src="https://i.imgur.com/ggsVH0m.jpg" 
+     height="900" /> <img src="https://i.imgur.com/BwDPReE.jpg" 
      width="405" 
-     height="900" /> <img src="https://i.imgur.com/88h5gvP.jpg" 
+     height="900" /> <img src="https://i.imgur.com/FAMcmqV.jpg" 
      width="405" 
      height="900" /> 
     
