@@ -216,7 +216,10 @@ class _LocationHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: EdgeInsets.symmetric(
+        horizontal: 15,
+        vertical: 10,
+      ),
       child: Row(
         children: [
           Icon(Icons.location_on_outlined),

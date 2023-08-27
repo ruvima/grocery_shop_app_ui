@@ -81,7 +81,7 @@ class CartBox extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  '$quantity item',
+                  '$quantity items',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.grey.shade500,

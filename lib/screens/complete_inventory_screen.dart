@@ -63,7 +63,7 @@ class _SummaryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 15),
+      padding: const EdgeInsets.only(right: 15, top: 5),
       child: Builder(builder: (context) {
         final total = context.watch<TotalProductBloc>().state;
         return Stack(
@@ -170,7 +170,7 @@ class _ProductListWidget extends StatelessWidget {
           primary: false,
           shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 2 / 2.4,
+            childAspectRatio: 2 / 3,
             crossAxisCount: 3,
           ),
           padding: const EdgeInsets.only(left: 15),
