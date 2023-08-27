@@ -1,16 +1,33 @@
-## Flutter Grocery shop app ui
+# Grocery Shop App
 
-##### The dribbble design is from: 
-[Grocery Shop UI](https://dribbble.com/shots/18876097-Grocery-Shop-UI "Grocery Shop UI")
+Welcome to the Grocery Shop App!.
 
-<img src="https://i.imgur.com/kvIOLeO.png" 
-     width="357" 
-     height="734" /> <img src="https://i.imgur.com/juxbHnW.png" 
-     width="357" 
-     height="734" /> <img src="https://i.imgur.com/qLwEtOq.png" 
-     width="357" 
-     height="734" /> 
-     <img width=378 src=https://s1.gifyu.com/images/shop_app_ui.gif />
+## Features
+
+- Browse and add products to the cart.
+- Remove products from the cart.
+- View cart contents and total price.
+- Clear the cart.
+- Search for products with debounce functionality.
+- Apply filters to narrow down product search.
+
+## Technologies Used
+
+- Flutter framework.
+- BLoC pattern for state management.
+- StreamSubscription for tracking cart changes.
+- Equatable for streamlined object comparison.
+- Rx Dart for debouncing search input.
+
+<img src="https://i.imgur.com/QE1jnpE.gif" 
+     width="405" 
+     height="900" /> <img src="https://i.imgur.com/cLNM6jH.jpg" 
+     width="405" 
+     height="900" /> <img src="https://i.imgur.com/ggsVH0m.jpg" 
+     width="405" 
+     height="900" /> <img src="https://i.imgur.com/88h5gvP.jpg" 
+     width="405" 
+     height="900" /> 
     
      
 
