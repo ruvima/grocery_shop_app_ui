@@ -4,9 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../models/product.dart';
-import '../product_filter/product_filter_bloc.dart';
-import '../product_list/product_list_bloc.dart';
-import '../product_search/product_search_bloc.dart';
+import '../blocs.dart';
 
 part 'filtered_products_event.dart';
 part 'filtered_products_state.dart';

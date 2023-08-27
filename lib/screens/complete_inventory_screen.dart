@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../blocs/filtered_products/filtered_products_bloc.dart';
-import '../blocs/product_cart/product_cart_bloc.dart';
-import '../blocs/product_filter/product_filter_bloc.dart';
-import '../blocs/product_search/product_search_bloc.dart';
-import '../blocs/total_product/total_product_bloc.dart';
+import '../blocs/blocs.dart';
 import '../widgets/fruits_box.dart';
 
 class CompleteInventoryScreen extends StatelessWidget {

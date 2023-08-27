@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+
 import '../../models/cart_item.dart';
 import '../../models/product.dart';
 
@@ -44,9 +45,6 @@ class ProductCartBloc extends Bloc<ProductCartEvent, ProductCartState> {
 
   void _removeProduct(RemoveProductCartEvent event, Emitter emit) {
     if (event.cartItem.quantity > 0) {
-      // final index = _productListBloc.state.products
-      //     .indexWhere((product) => product.id == event.cartItem.product.id);
-      // final originalProduct = _productListBloc.state.products[index];
       final updatedProducts = state.productCart
           .map(
             (item) => item.product.id == event.cartItem.product.id

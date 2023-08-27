@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../blocs/total_product/total_product_bloc.dart';
+import '../blocs/blocs.dart';
 import '../constants/constants.dart';
 import '../widgets/cart_box.dart';
 import '../widgets/fruits_box.dart';
-import '../blocs/product_cart/product_cart_bloc.dart';
-import '../blocs/product_list/product_list_bloc.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({Key? key}) : super(key: key);

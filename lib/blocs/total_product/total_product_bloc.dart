@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../product_cart/product_cart_bloc.dart';
+import '../blocs.dart';
 
 part 'total_product_event.dart';
 part 'total_product_state.dart';
