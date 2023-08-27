@@ -43,6 +43,7 @@ class _PaymentSummaryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       height: 100,
       decoration: BoxDecoration(
         color: Colors.indigo.shade300,
@@ -50,66 +51,76 @@ class _PaymentSummaryWidget extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BlocBuilder<TotalProductBloc, TotalProductState>(
-              builder: (context, state) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: BlocBuilder<TotalProductBloc, TotalProductState>(
+            builder: (context, state) {
+          return state.productQuantity == 0
+              ? const Center(
+                  child: Text(
+                    'Your cart is empty. 😔',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Total amount',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey.shade100,
-                        fontWeight: FontWeight.w400,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          'Total amount',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey.shade100,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Text(
+                          '\$ ${state.totalAmount} total',
+                          style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '${state.productQuantity} products',
+                          style: const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
-                    Text(
-                      '\$ ${state.totalAmount} total',
-                      style: const TextStyle(
-                          fontSize: 18,
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        side: const BorderSide(
+                          width: 1,
                           color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      '${state.productQuantity} products',
-                      style: const TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        elevation: 0,
+                        backgroundColor: Colors.indigo.shade300,
+                        minimumSize: const Size(50, 40),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Pay Now'),
+                          Icon(
+                            Icons.arrow_forward_ios_sharp,
+                            size: 15,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 );
-              },
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                side: const BorderSide(
-                  width: 1,
-                  color: Colors.white,
-                ),
-                elevation: 0,
-                backgroundColor: Colors.indigo.shade300,
-                minimumSize: const Size(50, 40),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Pay Now'),
-                  Icon(
-                    Icons.arrow_forward_ios_sharp,
-                    size: 15,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+        }),
       ),
     );
   }
